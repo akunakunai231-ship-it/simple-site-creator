@@ -1,4 +1,4 @@
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useScrollAnimation } from "../hooks/use-scroll-animation";
 import type { ReactNode } from "react";
 
 interface ScrollFadeWrapperProps {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useLanguage } from "@/contexts/language-context";
-import { Globe, Menu, X, ArrowLeft } from "lucide-react";
+import { useLanguage } from "../contexts/language-context";
+import { Globe, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
@@ -10,15 +10,10 @@ export default function Navbar() {
   const location = useLocation();
   const pathname = location.pathname;
 
-  const isStreamingPage = pathname === "/streaming";
-  const isHackathonPage = pathname === "/hackathon";
-
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY > 50;
-      setIsScrolled(scrolled);
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,14 +28,12 @@ export default function Navbar() {
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === "en" ? "es" : "en");
+    setLanguage(language === "en" ? "id" : "en");
   };
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 outline-none ${isScrolled ? "px-4 py-2" : ""}`}
-      role="navigation"
-      aria-label="Main navigation"
     >
       <div
         className={`max-w-7xl mx-auto transition-all duration-300 ${
@@ -51,43 +44,29 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between">
           <Link to="/" className="text-lg sm:text-xl font-bold text-white md:flex-1">
-            Arturo Grande
+            Dzakki D. R.
           </Link>
 
-          {(isStreamingPage || isHackathonPage) && (
-            <div className="hidden md:flex items-center mr-6">
-              <Link
-                to="/"
-                className="inline-flex items-center space-x-2 nav-item text-white/75 hover:text-white transition-colors relative"
-              >
-                <ArrowLeft size={20} />
-                <span>{isStreamingPage ? t("streaming.backHome") : t("hackathon.backHome")}</span>
-              </Link>
-            </div>
-          )}
-
-          {!isStreamingPage && !isHackathonPage && (
-            <div className="hidden md:flex items-center space-x-8 mr-6">
-              <button onClick={() => scrollToSection("home")} className="nav-item text-white/75 hover:text-white transition-colors relative">
-                {t("nav.home")}
-              </button>
-              <button onClick={() => scrollToSection("about")} className="nav-item text-white/75 hover:text-white transition-colors relative">
-                {t("nav.about")}
-              </button>
-              <button onClick={() => scrollToSection("portfolio")} className="nav-item text-white/75 hover:text-white transition-colors relative">
-                {t("nav.portfolio")}
-              </button>
-              <Link to="/streaming" className="nav-item text-white/75 hover:text-white transition-colors relative">
-                {t("nav.streaming")}
-              </Link>
-              <Link to="/hackathon" className="nav-item text-white/75 hover:text-white transition-colors relative">
-                {t("nav.hackathon")}
-              </Link>
-              <button onClick={() => scrollToSection("contact")} className="nav-item text-white/75 hover:text-white transition-colors relative">
-                {t("nav.contact")}
-              </button>
-            </div>
-          )}
+          <div className="hidden md:flex items-center space-x-8 mr-6">
+            <button onClick={() => scrollToSection("home")} className="nav-item text-white/75 hover:text-white transition-colors">
+              {t("nav.home")}
+            </button>
+            <button onClick={() => scrollToSection("about")} className="nav-item text-white/75 hover:text-white transition-colors">
+              {t("nav.about")}
+            </button>
+            <button onClick={() => scrollToSection("experience")} className="nav-item text-white/75 hover:text-white transition-colors">
+              {t("nav.experience")}
+            </button>
+            <button onClick={() => scrollToSection("portfolio")} className="nav-item text-white/75 hover:text-white transition-colors">
+              {t("nav.portfolio")}
+            </button>
+            <button onClick={() => scrollToSection("achievements")} className="nav-item text-white/75 hover:text-white transition-colors">
+              {t("nav.achievements")}
+            </button>
+            <button onClick={() => scrollToSection("contact")} className="nav-item text-white/75 hover:text-white transition-colors">
+              {t("nav.contact")}
+            </button>
+          </div>
 
           <div className="hidden md:flex items-center">
             <button
@@ -95,37 +74,29 @@ export default function Navbar() {
               className="flex items-center space-x-2 text-white hover:text-white/80 transition-colors glass px-3 py-2 rounded-lg"
             >
               <Globe size={16} />
-              <span className="text-sm font-medium">{language === "en" ? "ES" : "EN"}</span>
+              <span className="text-sm font-medium">{language === "en" ? "ID" : "EN"}</span>
             </button>
           </div>
 
           <div className="md:hidden flex items-center space-x-3">
             <button
               onClick={toggleLanguage}
-              className="flex items-center space-x-1 text-white hover:text-white/80 transition-colors glass px-2 py-1 rounded-lg ml-2"
+              className="flex items-center space-x-1 text-white hover:text-white/80 transition-colors glass px-2 py-1 rounded-lg"
             >
               <Globe size={14} />
-              <span className="text-xs font-medium">{language === "en" ? "ES" : "EN"}</span>
+              <span className="text-xs font-medium">{language === "en" ? "ID" : "EN"}</span>
             </button>
 
-            {(isStreamingPage || isHackathonPage) && (
-              <Link to="/" className="text-white hover:text-white/80 transition-colors glass p-2 rounded-lg">
-                <ArrowLeft size={20} />
-              </Link>
-            )}
-
-            {!isStreamingPage && !isHackathonPage && (
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-white hover:text-white/80 transition-colors glass p-2 rounded-lg"
-              >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            )}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white hover:text-white/80 transition-colors glass p-2 rounded-lg"
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
 
-        {isMobileMenuOpen && !isStreamingPage && !isHackathonPage && (
+        {isMobileMenuOpen && (
           <div className="md:hidden mt-4 glass rounded-lg p-4">
             <div className="flex flex-col space-y-4 text-center">
               <button onClick={() => scrollToSection("home")} className="text-white hover:text-white/80 transition-colors py-2">
@@ -134,15 +105,15 @@ export default function Navbar() {
               <button onClick={() => scrollToSection("about")} className="text-white hover:text-white/80 transition-colors py-2">
                 {t("nav.about")}
               </button>
+              <button onClick={() => scrollToSection("experience")} className="text-white hover:text-white/80 transition-colors py-2">
+                {t("nav.experience")}
+              </button>
               <button onClick={() => scrollToSection("portfolio")} className="text-white hover:text-white/80 transition-colors py-2">
                 {t("nav.portfolio")}
               </button>
-              <Link to="/streaming" className="text-white hover:text-white/80 transition-colors py-2 block" onClick={() => setIsMobileMenuOpen(false)}>
-                {t("nav.streaming")}
-              </Link>
-              <Link to="/hackathon" className="text-white hover:text-white/80 transition-colors py-2 block" onClick={() => setIsMobileMenuOpen(false)}>
-                {t("nav.hackathon")}
-              </Link>
+              <button onClick={() => scrollToSection("achievements")} className="text-white hover:text-white/80 transition-colors py-2">
+                {t("nav.achievements")}
+              </button>
               <button onClick={() => scrollToSection("contact")} className="text-white hover:text-white/80 transition-colors py-2">
                 {t("nav.contact")}
               </button>
