@@ -1,74 +1,48 @@
-import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/language-context";
-import { MessageCircle } from "lucide-react";
+import { Button } from "./ui/button";
+import { useLanguage } from "../contexts/language-context";
+import { Mail, Linkedin, Globe } from "lucide-react";
 
 export default function Footer() {
   const { t } = useLanguage();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <footer id="contact" className="py-20 relative">
+    <footer className="py-20 relative">
       <div className="absolute inset-0 bg-gradient-to-t from-black to-gray-900"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-center md:text-left">
-          <div>
-            <h3 className="text-2xl font-bold mb-6 text-white">{t("footer.portfolio")}</h3>
-            <div className="space-y-3">
-              <div className="text-white/75 hover:text-white transition-colors cursor-pointer" onClick={() => scrollToSection("portfolio")}>
-                {t("footer.portfolio.design")}
-              </div>
-            </div>
-          </div>
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t("footer.connect")}</h2>
+          <p className="text-white/70 text-lg mb-8">{t("footer.project")}</p>
+          
+          <Button
+            className="glass glass-hover border border-blue-400/30 hover:border-blue-400/60 text-white font-semibold px-8 py-4 group transition-all duration-300 hover:scale-105 text-lg"
+            onClick={() => window.open("mailto:dzakkirabbani99@gmail.com", "_blank")}
+          >
+            <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+            dzakkirabbani99@gmail.com
+          </Button>
+        </div>
 
-          <div>
-            <h3 className="text-2xl font-bold mb-6 text-white">{t("footer.about")}</h3>
-            <div className="space-y-3">
-              <div className="text-white/75 hover:text-white transition-colors cursor-pointer" onClick={() => scrollToSection("about")}>
-                {t("footer.about.bio")}
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-bold mb-6 text-white">{t("footer.connect")}</h3>
-            <p className="text-white/75 mb-4">{t("footer.connect.project")}</p>
-            <p className="text-white/75 mb-6">info@arturogrande.com</p>
-
-            <div className="mb-6">
-              <Button
-                className="glass glass-hover border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3 group transition-all duration-300 hover:scale-105"
-                onClick={() => window.open("https://wa.me/5491154000421?text=Hola%2C%20%C2%BFC%C3%B3mo%20est%C3%A1s%3F", "_blank")}
-              >
-                <MessageCircle className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                {t("about.cta")}
-              </Button>
-            </div>
-
-            <div className="flex space-x-4 justify-center md:justify-start">
-              <Button size="icon" className="glass glass-hover rounded-full border-white/20 hover:border-white/40" onClick={() => window.open("https://twitter.com/ArtuGrande", "_blank")}>
-                <img src="/icons/x.svg" alt="X" className="w-5 h-5" />
-              </Button>
-              <Button size="icon" className="glass glass-hover rounded-full border-white/20 hover:border-white/40" onClick={() => window.open("https://www.instagram.com/artugrande/", "_blank")}>
-                <img src="/icons/instagram.svg" alt="Instagram" className="w-5 h-5" />
-              </Button>
-              <Button size="icon" className="glass glass-hover rounded-full border-white/20 hover:border-white/40" onClick={() => window.open("https://www.linkedin.com/in/arturo-grande/", "_blank")}>
-                <img src="/icons/linkedin.svg" alt="LinkedIn" className="w-5 h-5" />
-              </Button>
-              <Button size="icon" className="glass glass-hover rounded-full border-white/20 hover:border-white/40" onClick={() => window.open("https://medium.com/@infoarturogrande", "_blank")}>
-                <img src="/icons/medium.svg" alt="Medium" className="w-5 h-5" />
-              </Button>
-            </div>
-          </div>
+        <div className="flex justify-center gap-6 mb-12">
+          <Button
+            size="icon"
+            className="glass glass-hover rounded-full border-white/20 hover:border-blue-400/40 w-12 h-12"
+            onClick={() => window.open("https://www.linkedin.com/in/dzakki-damar-rabbani/", "_blank")}
+          >
+            <Linkedin className="w-6 h-6" />
+          </Button>
+          <Button
+            size="icon"
+            className="glass glass-hover rounded-full border-white/20 hover:border-blue-400/40 w-12 h-12"
+            onClick={() => window.open("https://dzakjournal.com", "_blank")}
+          >
+            <Globe className="w-6 h-6" />
+          </Button>
         </div>
 
         <div className="flex justify-center items-center pt-8 border-t border-white/10">
-          <div className="text-white/75 text-sm">
-            {t("footer.made")} <span className="font-bold text-white">ARTUROGRANDE.COM</span> © 2025
+          <div className="text-white/50 text-sm">
+            {t("footer.made")} <span className="font-bold text-white">Dzakki D. R.</span> © 2025
           </div>
         </div>
       </div>

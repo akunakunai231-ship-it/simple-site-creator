@@ -1,10 +1,11 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import TrustedBySection from "@/components/TrustedBySection";
-import AboutSection from "@/components/AboutSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import Footer from "@/components/Footer";
-import ScrollFadeWrapper from "@/components/ScrollFadeWrapper";
+import Navbar from "../components/Navbar";
+import HeroSection from "../components/HeroSection";
+import AboutSection from "../components/AboutSection";
+import ExperienceSection from "../components/ExperienceSection";
+import PortfolioSection from "../components/PortfolioSection";
+import AchievementsSection from "../components/AchievementsSection";
+import Footer from "../components/Footer";
+import ScrollFadeWrapper from "../components/ScrollFadeWrapper";
 
 export default function Index() {
   return (
@@ -15,19 +16,23 @@ export default function Index() {
         <HeroSection />
       </ScrollFadeWrapper>
 
-      <ScrollFadeWrapper delay={200} id="trusted-by">
-        <TrustedBySection />
-      </ScrollFadeWrapper>
-
-      <ScrollFadeWrapper delay={300}>
+      <ScrollFadeWrapper delay={200} id="about">
         <AboutSection />
       </ScrollFadeWrapper>
 
-      <ScrollFadeWrapper delay={400}>
+      <ScrollFadeWrapper delay={300} id="experience">
+        <ExperienceSection />
+      </ScrollFadeWrapper>
+
+      <ScrollFadeWrapper delay={400} id="portfolio">
         <PortfolioSection />
       </ScrollFadeWrapper>
 
-      <ScrollFadeWrapper delay={700}>
+      <ScrollFadeWrapper delay={500} id="achievements">
+        <AchievementsSection />
+      </ScrollFadeWrapper>
+
+      <ScrollFadeWrapper delay={600} id="contact">
         <Footer />
       </ScrollFadeWrapper>
     </main>
